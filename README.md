@@ -1,35 +1,31 @@
-After you generate a starter project, these instructions will help you with what to do next.
+This app is to demonstrate the Jakarta EE 10 Core Profile.
 
-The Open Liberty starter gives you a simple, quick way to get the necessary files to start building
-an application on Open Liberty. There is no need to search how to find out what to add to your 
-Maven build files. A simple RestApplication.java file is generated for you to start 
-creating a REST based application. A server.xml configuration file is provided with the necessary 
-features for the MicroProfile and Jakarta EE versions that you previously selected.
+To add event
+curl -X 'POST' \
+  'http://localhost:9080/ee-core-profile/api/events' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'id=222&name=emily&time=222&location=london'
+  
+To retrieve all event
 
-If you plan on developing and/or deploying your app in a containerized environment, the included 
-Dockerfile will make it easier to create your application image on top of the Open Liberty Docker 
-image.
+curl -X 'GET' \
+  'http://localhost:9080/ee-core-profile/api/events' \
+  -H 'accept: application/json'
 
-1) Once you download the starter project, unpackage the .zip file on your machine.
-2) Open a command line session, navigate to the installation directory, and run `./mvnw liberty:dev` (Linux/Mac) or `mvnw liberty:dev` (Windows). 
-   This will install all required dependencies and start the default server. When complete, you will
-   see the necessary features installed and the message "server is ready to run a smarter planet."
+To retrieve an event
+curl -X 'GET' \
+  'http://localhost:9080/ee-core-profile/api/events/222' \
+  -H 'accept: application/json'
 
-For information on developing your application in dev mode using Maven, see the 
-dev mode documentation (https://openliberty.io/docs/latest/development-mode.html).
+To update an event
+curl -X 'PUT' \
+  'http://localhost:9080/ee-core-profile/api/events/222' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'name=Tom&time=888&location=London'
 
-For further help on getting started actually developing your application, see some of our 
-MicroProfile guides (https://openliberty.io/guides/?search=microprofile&key=tag) and Jakarta EE 
-guides (https://openliberty.io/guides/?search=jakarta%20ee&key=tag).
-
-If you have problems building the starter project, make sure the Java SE version on your 
-machine matches the Java SE version you picked from the Open Liberty starter on the downloads 
-page (https://openliberty.io/downloads/). You can test this with the command `java -version`.
-
-Open Liberty performs at its best when running using Open J9 which can be obtained via IBM Semeru 
-(https://developer.ibm.com/languages/java/semeru-runtimes/downloads/). For a full list of supported 
-Java SE versions and where to obtain them, reference the Java SE support page 
-(https://openliberty.io/docs/latest/java-se.html).
-
-If you find any issues with the starter project or have recommendations to improve it, open an 
-issue in the starter GitHub repo (https://github.com/OpenLiberty/start.openliberty.io).
+To delete an event
+curl -X 'DELETE' \
+  'http://localhost:9080/ee-core-profile/api/events/222' \
+  -H 'accept: */*'
