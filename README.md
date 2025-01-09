@@ -1,4 +1,4 @@
-This app is to demonstrate the Jakarta EE 10 Core Profile.
+# This app is to demonstrate the Jakarta EE 10 Core Profile.
 
 ## To add event
 ```
